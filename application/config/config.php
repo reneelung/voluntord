@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/voluntord/';
+$config['base_url'] = 'http://voluntord.dev';
 
 /*
 |--------------------------------------------------------------------------
@@ -498,3 +498,21 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+/*
+| -------------------------------------------------------------------
+|  Native Auto-load
+| -------------------------------------------------------------------
+| 
+| Nothing to do with config/autoload.php, this allows PHP autoload to work
+| for base controllers and some third-party libraries.
+|
+*/
+
+function __autoload($class)
+{
+	if(strpos($class, 'CI_') !== 0)
+	{
+		@include_once( APPPATH . 'core/'. $class . ".php" );
+	}
+}

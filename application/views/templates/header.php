@@ -80,5 +80,6 @@
 		<li><a href='<?php echo BASE_URL ?>'>Home</a></li>
 		<li><a href='<?php echo BASE_URL ?>volunteer/'>Volunteer Hours</a></li>
 		<li><a href='<?php echo BASE_URL ?>account/'>Account Info</a></li>
+		<li><a href='<?php echo BASE_URL ?>logout/'>Logout</a></li>
 	</ul>
 </nav>

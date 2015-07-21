@@ -1,5 +1,4 @@
 <?php
-
 class Volunteer extends Tord_Controller {
 
 	public function __construct()

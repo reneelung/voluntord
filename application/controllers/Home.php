@@ -1,6 +1,6 @@
 <?php
 
-class Home extends Tord_Controller {
+class Home extends Public_Controller {
 
 	public function __construct()
 	{
@@ -16,7 +16,7 @@ class Home extends Tord_Controller {
 			if ($user)
 			{
 				$this->account_model->login_user($user);
-				header ("Location: ".BASE_URL."account/");
+				$this->redirect('account');
 			}
 		}
 
@@ -26,7 +26,7 @@ class Home extends Tord_Controller {
 	public function logout()
 	{
 		$this->session->destroy();
-		print_r($_SESSION);
+		$this->redirect('');
 	}
 
 }

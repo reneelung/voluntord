@@ -1,9 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-define('BASE_URL', "http://localhost/voluntord/index.php/");
+define('BASE_URL', "http://voluntord.dev/index.php/");
 define('PASSWORD_SALT_PRE', "SmQrtJfXEzpCpOSDPobW");
 define('PASSWORD_SALT_POST', "hB2YWEnhCYOnSbFwduFi");
+
+define('APP_DIR', '/Applications/MAMP/htdocs/voluntord/application/');
 
 /*
 |--------------------------------------------------------------------------

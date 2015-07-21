@@ -64,9 +64,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'hostname' => '127.0.0.1',
+	'username' => 'voluntord',
+	'password' => 'z1q4k46the!9!',
 	'database' => 'voluntord',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

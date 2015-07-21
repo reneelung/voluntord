@@ -23,6 +23,8 @@
 # Dump of table dues
 # ------------------------------------------------------------
 
+USE `voluntord`;
+
 DROP TABLE IF EXISTS `dues`;
 
 CREATE TABLE `dues` (
