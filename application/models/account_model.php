@@ -34,10 +34,10 @@ class Account_model extends Tord_Model {
 		$this->user = $user;
 	}
 
-	function _refresh_user($user)
+	public function logout_user($user)
 	{
-		$refreshed = $this->get_user($user['username']);
-		$this->login_user($refreshed);
+		$this->session->destroy();
+		unset($this->user);
 	}
 
 	public function is_logged_in()
@@ -55,18 +55,20 @@ class Account_model extends Tord_Model {
 		}
 	}
 
-	public function update_password($plain_text)
-	{
-		$encrypted = $this->_encrypt($plain_text);
-		$this->db->where('id', $this->user['id']);
-		$this->db->update('users', array('password_hash' => $encrypted));
-		$this->_refresh_user($this->user);
-
-		return $this;
-	}
-
 	function _encrypt($plain_text)
 	{
 		return PASSWORD_SALT_PRE.$plain_text.PASSWORD_SALT_POST;
+	}
+
+	public function get_user_role($id)
+	{
+		$rtn =  $this->db->select('key')
+						 ->from('roles')
+						 ->join('user_roles', 'user_roles.role_id = roles.id')
+						 ->join('users', 'users.id = user_roles.user_id')
+						 ->where('users.id', $id)
+						 ->get()->first_row();
+
+		return $rtn->key;
 	}
 }

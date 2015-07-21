@@ -7,16 +7,7 @@ class Account extends Tord_Controller {
 	{
 		$this->data['set_password'] = false;
 		$this->data['user'] = $this->user;
-
-		if (!$this->user['password_hash'])
-		{
-			$this->data['set_password'] = true;
-		}
-
-		if ($this->post_data)
-		{
-			$this->account_model->update_password($this->post_data['password']);
-		}
+		$this->data['user']['role'] = $this->account_model->get_user_role($this->user['id']);
 
 		$this->loadView('account/index');
 	}
