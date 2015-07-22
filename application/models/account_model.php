@@ -11,10 +11,10 @@ class Account_model extends Tord_Model {
 	{
 		$this->db->select('*');
 		$this->db->where('username', $data['username']);
-		$user = $this->db->get('users')->result_array();
+		$user = $this->db->get('users')->row_array();
 
 		if ($user) { 
-			return $user[0];
+			return array_merge($user, array('role' => $this->_get_user_role($user['id'])));
 		}
 		else 
 		{
@@ -24,7 +24,9 @@ class Account_model extends Tord_Model {
 
 	public function update_user($data)
 	{
-		return $this->db->update('users', $data);
+		$this->db->update('users', $data);
+		$updated = $this->get_user($data);
+		$this->login_user($updated);
 	}
 
 	public function login_user($user)
@@ -60,7 +62,7 @@ class Account_model extends Tord_Model {
 		return PASSWORD_SALT_PRE.$plain_text.PASSWORD_SALT_POST;
 	}
 
-	public function get_user_role($id)
+	function _get_user_role($id)
 	{
 		$rtn =  $this->db->select('key')
 						 ->from('roles')
@@ -69,6 +71,20 @@ class Account_model extends Tord_Model {
 						 ->where('users.id', $id)
 						 ->get()->first_row();
 
-		return $rtn->key;
+		if ($rtn)
+		{
+			return $rtn->key;
+		}		
+	}
+
+	public function is_admin($id=null)
+	{
+		if (!$id)
+		{
+			$user = $this->session->get('user_data');
+			$id = $user['id'];
+		}
+
+		return $this->_get_user_role($id) == 'administrator';
 	}
 }

@@ -1,85 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to VolunToRD</title>
-
-	<style type="text/css">
-
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body {
-		margin: 0 15px 0 15px;
-	}
-
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
-
-	nav ul {
-		overflow: hidden;
-	}
-
-	nav ul li {
-		list-style-type: none;
-		float: left;
-		padding: 10px;
-		text-align: center;
-	}
-	</style>
-</head>
 <body>
-<nav>
-	<ul>
-		<li><a href='<?php echo BASE_URL ?>'>Home</a></li>
-		<li><a href='<?php echo BASE_URL ?>volunteer/'>Volunteer Hours</a></li>
-		<li><a href='<?php echo BASE_URL ?>account/'>Account Info</a></li>
-		<li><a href='<?php echo BASE_URL ?>logout/'>Logout</a></li>
-	</ul>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<?php echo BASE_URL ?>">Voluntord</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href='<?php echo BASE_URL ?>account/'>Account</a></li>
+        <li><a href='<?php echo BASE_URL ?>volunteer/'>Volunteer Hours</a></li>
+        <?php if ($admin): ?><li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administrator<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+    	<?php endif; ?>
+      </ul>
+     
+      <ul class="nav navbar-nav navbar-right">
+        <?php if ($logged_in): ?><li><a href='<?php echo BASE_URL ?>logout/'>Logout</a></li><?php endif; ?>
+      </ul>
+    </div>
+  </div>
 </nav>
+<div class='container'>

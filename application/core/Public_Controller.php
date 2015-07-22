@@ -3,6 +3,7 @@
 class Public_Controller extends CI_Controller {
 
 	protected $data;
+	protected $user;
 
 	public function __construct()
 	{
@@ -15,15 +16,19 @@ class Public_Controller extends CI_Controller {
 		$this->loadModel('account_model');
 
 		$this->session->start();
+
+		$this->data['admin'] = $this->account_model->is_admin();
+		$this->data['logged_in'] = $this->account_model->is_logged_in();
 	}
 	
 	public function loadView($view)
 	{
+		$head 	= $this->load->view('templates/head', $this->data, true);
 		$header = $this->load->view('templates/header', $this->data, true);
 		$footer = $this->load->view('templates/footer', $this->data, true);
 		$main_view = $this->load->view($view, $this->data, true);
 
-		echo $header.$main_view.$footer;
+		echo $head.$header.$main_view.$footer;
 	}
 
 	public function loadLibrary($library)
